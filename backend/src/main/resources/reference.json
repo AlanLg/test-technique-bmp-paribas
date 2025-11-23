@@ -1,0 +1,122 @@
+[
+  {
+    "stepCode": "AcquisitionCB",
+    "stepRank": 1,
+    "eventRank": 1,
+    "eventType": "CBAcquired"
+  },
+  {
+    "stepCode": "AcquisitionCB",
+    "stepRank": 1,
+    "eventRank": 2,
+    "eventType": "CBPGPAcquired"
+  },
+  {
+    "stepCode": "AcquisitionCB",
+    "stepRank": 1,
+    "eventRank": 3,
+    "eventType": "CBAcquiredForBatch"
+  },
+  {
+    "stepCode": "AcquisitionCB",
+    "stepRank": 1,
+    "eventRank": 4,
+    "eventType": "CBAcquiredToPfmt101"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 1,
+    "eventType": "Reception"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 2,
+    "eventType": "Duplicate"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 3,
+    "eventType": "DuplicateVerification"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 4,
+    "eventType": "Duplicate4EyesVerification"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 5,
+    "eventType": "100%VirementHold"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 6,
+    "eventType": "100%VirementVerify"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 7,
+    "eventType": "OnHold"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 8,
+    "eventType": "Repair"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 9,
+    "eventType": "Reception"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 10,
+    "eventType": "Duplicate"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 11,
+    "eventType": "DuplicateVerification"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 12,
+    "eventType": "Duplicate4EyesVerification"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 13,
+    "eventType": "100%VirementHold"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 14,
+    "eventType": "100%VirementVerify"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 15,
+    "eventType": "OnHold"
+  },
+  {
+    "stepCode": "Acquisition",
+    "stepRank": 2,
+    "eventRank": 16,
+    "eventType": "Repair"
+  }
+]

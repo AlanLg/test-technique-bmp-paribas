@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: "reconciliation-transactions-financieres"
+  batch:
+    job:
+      enabled: false
+  mongodb:
+    host: "localhost"
+    port: 27017
+    database: "bank"
+    username: "user"
+    password: "password"
+    authentication-database: "admin"
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
