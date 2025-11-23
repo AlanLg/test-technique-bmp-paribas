@@ -5,12 +5,7 @@ spring:
     job:
       enabled: false
   mongodb:
-    host: "localhost"
-    port: 27017
-    database: "bank"
-    username: "user"
-    password: "password"
-    authentication-database: "admin"
+    uri: "mongodb://user:password@mongodb:27017/bank?authSource=admin"
 
 logging:
   level:
