@@ -6,12 +6,3 @@ spring:
       enabled: false
   mongodb:
     uri: "mongodb://user:password@localhost:27017/bank?authSource=admin"
-
-logging:
-  level:
-    org:
-      springframework:
-        data:
-          mongodb:
-            core:
-              MongoTemplate: DEBUG
