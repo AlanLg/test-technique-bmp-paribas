@@ -35,8 +35,8 @@ public class TransactionService {
 
     public List<TransactionResponse> getTransactionChain(String primaryId) {
         final TransactionEntity transaction = transactionRepository.findTransactionEntityByPrimaryId(primaryId);
-        final ReferenceStepDto firstStep = stepReferenceService.getEventSteps().getFirst();
-        final ReferenceStepDto lastStep = stepReferenceService.getEventSteps().getLast();
+        final ReferenceStepDto firstStep = stepReferenceService.getLoadReferenceSteps().getFirst();
+        final ReferenceStepDto lastStep = stepReferenceService.getLoadReferenceSteps().getLast();
 
         final List<TransactionEntity> transactionsAboveSearch = constructChain(transaction, firstStep, (currentTransaction) -> {
             return transactionRepository.findTransactionEntityByPrimaryId(currentTransaction.getSecondaryId());
@@ -59,7 +59,7 @@ public class TransactionService {
     private List<TransactionEntity> constructChain(TransactionEntity transaction, ReferenceStepDto referenceStep, Function<TransactionEntity, TransactionEntity> findNextTransaction) {
         final List<TransactionEntity> transactionChain = new ArrayList<>();
         TransactionEntity currentTransaction = new TransactionEntity(transaction);
-        while (!currentTransaction.getEventRank().equals(referenceStep.getEventRank()) || !currentTransaction.getStepRank().equals(referenceStep.getStepRank())) {
+        while ((currentTransaction.getSecondaryId() != null) && (!currentTransaction.getEventRank().equals(referenceStep.getEventRank()) || !currentTransaction.getStepRank().equals(referenceStep.getStepRank()))) {
             currentTransaction = findNextTransaction.apply(currentTransaction);
             transactionChain.add(new TransactionEntity(currentTransaction));
         }

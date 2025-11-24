@@ -3,6 +3,7 @@ package me.alan.reconciliationtransactionsfinancieres.service;
 import lombok.Getter;
 import me.alan.reconciliationtransactionsfinancieres.model.dto.ReferenceStepDto;
 import me.alan.reconciliationtransactionsfinancieres.model.entity.TransactionEntity;
+import me.alan.reconciliationtransactionsfinancieres.model.entity.TransactionErrors;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -24,7 +25,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 public class StepReferenceService {
 
     @Getter
-    private final LinkedList<ReferenceStepDto> eventSteps;
+    private final LinkedList<ReferenceStepDto> loadReferenceSteps;
     private final ObjectMapper objectMapper;
     private final MongoTemplate mongoTemplate;
 
@@ -32,13 +33,13 @@ public class StepReferenceService {
         this.objectMapper = objectMapper;
         this.mongoTemplate = mongoTemplate;
         try {
-            this.eventSteps = loadEventSteps();
+            this.loadReferenceSteps = loadReferenceSteps();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private LinkedList<ReferenceStepDto> loadEventSteps() throws IOException {
+    private LinkedList<ReferenceStepDto> loadReferenceSteps() throws IOException {
         final ClassPathResource resource = new ClassPathResource("reference.json");
         final InputStream inputStream = resource.getInputStream();
         final String json = new String(FileCopyUtils.copyToByteArray(inputStream));
@@ -46,8 +47,21 @@ public class StepReferenceService {
         return objectMapper.readValue(json, new TypeReference<>() {});
     }
 
+    public void markNullStepAndEventRanksWithTransactionError() {
+        final Update update = new Update()
+                .addToSet("transactionErrors", TransactionErrors.INCOMPLETE_TRANSACTION_CHAIN);
+
+        final Query query = new Query(where("stepRank").is(-1));
+
+        mongoTemplate.updateMulti(
+                query,
+                update,
+                TransactionEntity.class
+        );
+    }
+
     public void updateStepRanksAndEventRanksForTransactions() {
-        for (ReferenceStepDto referenceStep : eventSteps) {
+        for (ReferenceStepDto referenceStep : loadReferenceSteps) {
             switch (referenceStep.getStepRank()) {
                 case 1 -> updateStepRankOneTransactions(referenceStep);
                 case 2 -> updateStepRankTwoTransactions(referenceStep);

@@ -4,6 +4,7 @@ import lombok.Getter;
 
 public enum TransactionErrors {
     INVALID_DATE_TIME("Invalid date"),
+    INCOMPLETE_TRANSACTION_CHAIN("Incomplete transaction chain"),
     ;
 
     @Getter

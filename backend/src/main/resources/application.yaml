@@ -5,7 +5,7 @@ spring:
     job:
       enabled: false
   mongodb:
-    uri: "mongodb://user:password@mongodb:27017/bank?authSource=admin"
+    uri: "mongodb://user:password@localhost:27017/bank?authSource=admin"
 
 logging:
   level:

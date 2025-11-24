@@ -7,6 +7,7 @@ import me.alan.reconciliationtransactionsfinancieres.service.StepReferenceServic
 import org.springframework.batch.core.job.Job;
 import org.springframework.batch.core.job.parameters.JobParameters;
 import org.springframework.batch.core.launch.JobOperator;
+import org.springframework.batch.core.step.Step;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,7 @@ public class LoadTransactionsIntoDatabaseRunner implements CommandLineRunner {
         if (repository.count() == 0) {
             jobOperator.start(job, new JobParameters());
             stepReferenceService.updateStepRanksAndEventRanksForTransactions();
+            stepReferenceService.markNullStepAndEventRanksWithTransactionError();
         }
     }
 }
