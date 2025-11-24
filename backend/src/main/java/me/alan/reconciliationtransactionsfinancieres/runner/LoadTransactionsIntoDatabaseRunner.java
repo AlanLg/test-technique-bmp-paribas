@@ -24,9 +24,11 @@ public class LoadTransactionsIntoDatabaseRunner implements CommandLineRunner {
     @Override
     public void run(final String... args) throws Exception {
         if (repository.count() == 0) {
+            log.info("started loading transactions into database, this may take a while...");
             jobOperator.start(job, new JobParameters());
             stepReferenceService.updateStepRanksAndEventRanksForTransactions();
             stepReferenceService.markNullStepAndEventRanksWithTransactionError();
+            log.info("transactions have been loaded into the database, everything is ready");
         }
     }
 }
